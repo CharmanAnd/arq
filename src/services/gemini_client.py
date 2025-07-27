@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-ARQV30 Enhanced v2.0 - Cliente Google Gemini Pro
+ARQV30 Enhanced v2.0 - Cliente Google Gemini Pro Ultra-Robusto
 Integração com IA Avançada para Análise de Mercado
 """
 
@@ -15,7 +15,7 @@ from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
-class GeminiClient:
+class UltraRobustGeminiClient:
     """Cliente para integração com Google Gemini Pro"""
     
     def __init__(self):
@@ -27,7 +27,7 @@ class GeminiClient:
         # Configura API
         genai.configure(api_key=self.api_key)
         
-        # Modelo principal
+        # Modelo principal (usando o mais avançado disponível)
         self.model = genai.GenerativeModel("gemini-1.5-flash")
         
         # Configurações de geração
@@ -35,7 +35,7 @@ class GeminiClient:
             'temperature': 0.7,
             'top_p': 0.8,
             'top_k': 40,
-            'max_output_tokens': 8192,
+            'max_output_tokens': 32768,  # Aumentado para análises ultra-detalhadas
         }
         
         # Configurações de segurança
@@ -80,7 +80,7 @@ class GeminiClient:
         """Gera análise ultra-detalhada usando Gemini Pro"""
         
         try:
-            # Constrói prompt principal
+            # Constrói prompt ultra-detalhado
             prompt = self._build_analysis_prompt(analysis_data, search_context, attachments_context)
             
             logger.info("Iniciando análise com Gemini Pro...")
@@ -117,8 +117,17 @@ class GeminiClient:
         prompt = f"""
 # ANÁLISE ULTRA-DETALHADA DE MERCADO - ARQV30 ENHANCED
 
-Você é um especialista em análise de mercado e marketing digital com 20+ anos de experiência. 
-Sua missão é gerar uma análise ultra-detalhada e profissional baseada nos dados fornecidos.
+Você é o DIRETOR SUPREMO DE ANÁLISE DE MERCADO, um especialista de elite com 25+ anos de experiência em análise de mercado, psicologia do consumidor, estratégia de negócios e marketing digital avançado.
+
+Sua missão é gerar a ANÁLISE MAIS COMPLETA E PROFUNDA possível, implementando TODOS os sistemas avançados dos documentos fornecidos:
+
+1. SISTEMA DE PROVAS VISUAIS INSTANTÂNEAS
+2. ARQUITETO DE DRIVERS MENTAIS  
+3. PRÉ-PITCH INVISÍVEL
+4. ENGENHARIA ANTI-OBJEÇÃO
+5. ANCORAGEM PSICOLÓGICA
+
+IMPORTANTE: Esta análise deve ter PROFUNDIDADE EXTREMA, com insights únicos que vão muito além do óbvio. Seja ULTRA-ESPECÍFICO e ACIONÁVEL.
 
 ## DADOS DO PROJETO:
 - **Segmento**: {data.get('segmento', 'Não informado')}
@@ -129,6 +138,7 @@ Sua missão é gerar uma análise ultra-detalhada e profissional baseada nos dad
 - **Objetivo de Receita**: R$ {data.get('objetivo_receita', 'Não informado')}
 - **Orçamento Marketing**: R$ {data.get('orcamento_marketing', 'Não informado')}
 - **Prazo de Lançamento**: {data.get('prazo_lancamento', 'Não informado')}
+- **Dados Adicionais**: {data.get('dados_adicionais', 'Não informado')}
 """
 
         if search_context:
@@ -138,9 +148,9 @@ Sua missão é gerar uma análise ultra-detalhada e profissional baseada nos dad
             prompt += f"\n## CONTEXTO DOS ANEXOS:\n{attachments_context}\n"
         
         prompt += """
-## INSTRUÇÕES PARA ANÁLISE:
+## INSTRUÇÕES PARA ANÁLISE ULTRA-ROBUSTA:
 
-Gere uma análise completa e estruturada em formato JSON com as seguintes seções:
+Gere uma análise ULTRA-COMPLETA e estruturada em formato JSON implementando TODOS os sistemas dos documentos. A estrutura deve ser:
 
 ```json
 {
@@ -148,7 +158,7 @@ Gere uma análise completa e estruturada em formato JSON com as seguintes seçõ
     "perfil_demografico": {
       "idade": "Faixa etária específica",
       "genero": "Distribuição por gênero",
-      "renda": "Faixa de renda mensal",
+      "renda": "Faixa de renda mensal detalhada",
       "escolaridade": "Nível educacional",
       "localizacao": "Região geográfica",
       "estado_civil": "Status relacionamento",
@@ -156,67 +166,119 @@ Gere uma análise completa e estruturada em formato JSON com as seguintes seçõ
     },
     "perfil_psicografico": {
       "personalidade": "Traços de personalidade dominantes",
-      "valores": "Valores e crenças principais",
+      "valores": "Valores e crenças principais detalhados",
       "interesses": "Hobbies e interesses",
       "estilo_vida": "Como vive o dia a dia",
       "comportamento_compra": "Como toma decisões de compra",
       "influenciadores": "Quem influencia suas decisões"
     },
     "dores_especificas": [
-      "Lista de 5-8 dores específicas e detalhadas"
+      "Lista de 8-12 dores específicas e viscerais"
     ],
     "desejos_profundos": [
-      "Lista de 5-8 desejos e aspirações"
+      "Lista de 8-12 desejos e aspirações profundas"
     ],
     "gatilhos_mentais": [
       "Lista de gatilhos psicológicos efetivos"
     ],
     "objecoes_comuns": [
-      "Principais objeções e resistências"
+      "Principais objeções e resistências detalhadas"
     ],
     "jornada_cliente": {
       "consciencia": "Como toma consciência do problema",
       "consideracao": "Como avalia soluções",
       "decisao": "Como decide pela compra",
       "pos_compra": "Experiência pós-compra"
+    },
+    "linguagem_interna": {
+      "frases_dor": ["Frases que usa para expressar dores"],
+      "frases_desejo": ["Frases que usa para expressar desejos"],
+      "metaforas_comuns": ["Metáforas que usa"],
+      "vocabulario_especifico": ["Palavras específicas do nicho"]
+    },
+    "arquetipo_psicologico": "Arquétipo dominante identificado",
+    "nivel_consciencia": "Nível de consciência do problema (1-5)",
+    "nivel_sofisticacao": "Nível de sofisticação do mercado (1-5)",
+    "resistencias_ocultas": [
+      "Resistências psicológicas não verbalizadas"
+    ],
+    "momento_ideal_abordagem": "Quando e como abordar este avatar"
     }
   },
   
+  "drivers_mentais_customizados": [
+    {
+      "nome": "Nome do driver específico",
+      "gatilho_central": "Emoção ou lógica core",
+      "definicao_visceral": "Definição impactante",
+      "roteiro_ativacao": "Como ativar este driver",
+      "frases_ancoragem": ["Frases para usar"],
+      "momento_ideal": "Quando usar na jornada",
+      "prova_logica": "Dados que sustentam",
+      "loop_reforco": "Como reativar depois"
+    }
+  ],
+  
+  "provas_visuais_sugeridas": [
+    {
+      "nome": "Nome da demonstração",
+      "conceito_alvo": "O que quer provar",
+      "experimento": "Descrição da demonstração física",
+      "analogia": "Como conecta com a vida deles",
+      "materiais": ["Lista de materiais necessários"],
+      "roteiro_completo": "Script passo a passo",
+      "variacoes": "Adaptações para diferentes formatos",
+      "gestao_riscos": "Como lidar se der errado"
+    }
+  ],
+  
   "escopo": {
     "posicionamento_mercado": "Posicionamento único no mercado",
-    "proposta_valor": "Proposta de valor clara e diferenciada",
+    "proposta_valor_unica": "Proposta de valor irresistível",
     "diferenciais_competitivos": ["Lista de diferenciais únicos"],
-    "segmentacao_mercado": "Como segmentar o mercado",
-    "nicho_especifico": "Nicho mais específico recomendado"
+    "mensagem_central": "Mensagem principal",
+    "tom_comunicacao": "Tom de voz ideal",
+    "nicho_especifico": "Nicho mais específico recomendado",
+    "estrategia_oceano_azul": "Como criar mercado sem concorrência"
   },
   
   "analise_concorrencia_detalhada": {
     "concorrentes_diretos": [
       {
         "nome": "Nome do concorrente",
-        "pontos_fortes": ["Forças principais"],
-        "pontos_fracos": ["Fraquezas identificadas"],
+        "analise_swot": {
+          "forcas": ["Principais forças"],
+          "fraquezas": ["Principais fraquezas"],
+          "oportunidades": ["Oportunidades identificadas"],
+          "ameacas": ["Ameaças que representa"]
+        },
+        "estrategia_marketing": "Estratégia principal",
+        "posicionamento": "Como se posiciona",
+        "diferenciais": ["Principais diferenciais"],
+        "vulnerabilidades": ["Pontos fracos exploráveis"],
         "preco": "Faixa de preço",
-        "estrategia": "Estratégia principal"
+        "share_mercado": "Participação estimada"
       }
     ],
     "concorrentes_indiretos": ["Lista de concorrentes indiretos"],
     "gaps_oportunidade": ["Oportunidades não exploradas"],
-    "analise_precos": "Análise detalhada de precificação",
-    "vantagem_competitiva": "Como se diferenciar"
+    "benchmarks_setor": "Benchmarks específicos do setor",
+    "estrategias_diferenciacao": ["Como se diferenciar"],
+    "analise_precos": "Análise detalhada de precificação"
   },
   
   "estrategia_palavras_chave": {
-    "palavras_primarias": ["5-8 palavras-chave principais"],
-    "palavras_secundarias": ["10-15 palavras-chave secundárias"],
-    "long_tail": ["15-20 palavras-chave de cauda longa"],
+    "palavras_primarias": ["8-12 palavras-chave principais"],
+    "palavras_secundarias": ["15-25 palavras-chave secundárias"],
+    "palavras_cauda_longa": ["20-30 palavras-chave de cauda longa"],
+    "palavras_negativas": ["Palavras a evitar"],
     "intencao_busca": {
       "informacional": ["Palavras informacionais"],
       "navegacional": ["Palavras navegacionais"],
       "transacional": ["Palavras transacionais"]
     },
-    "volume_estimado": "Estimativa de volume de busca",
-    "dificuldade_ranking": "Análise de dificuldade SEO"
+    "estrategia_conteudo": "Como usar as palavras-chave",
+    "sazonalidade": "Variações sazonais das buscas"
   },
   
   "metricas_performance_detalhadas": {
@@ -225,91 +287,200 @@ Gere uma análise completa e estruturada em formato JSON com as seguintes seçõ
         "metrica": "Nome da métrica",
         "objetivo": "Meta específica",
         "benchmark": "Benchmark do setor",
-        "frequencia": "Frequência de medição"
+        "frequencia": "Frequência de medição",
+        "formula_calculo": "Como calcular"
       }
     ],
+    "kpis_secundarios": ["KPIs de apoio"],
+    "metas_especificas": {
+      "cpl_meta": "Custo por lead ideal",
+      "cac_meta": "Custo de aquisição ideal",
+      "ltv_meta": "Lifetime value esperado",
+      "roi_meta": "ROI esperado"
+    },
     "funil_conversao": {
-      "topo": "Métricas de awareness",
-      "meio": "Métricas de consideração",
-      "fundo": "Métricas de conversão"
+      "topo_funil": {
+        "objetivo": "Objetivo desta etapa",
+        "estrategias": ["Estratégias específicas"],
+        "conteudos": ["Tipos de conteúdo"],
+        "metricas": ["Métricas a acompanhar"]
+      },
+      "meio_funil": {
+        "objetivo": "Objetivo desta etapa",
+        "estrategias": ["Estratégias específicas"],
+        "conteudos": ["Tipos de conteúdo"],
+        "metricas": ["Métricas a acompanhar"]
+      },
+      "fundo_funil": {
+        "objetivo": "Objetivo desta etapa",
+        "estrategias": ["Estratégias específicas"],
+        "conteudos": ["Tipos de conteúdo"],
+        "metricas": ["Métricas a acompanhar"]
+      }
     },
-    "roi_esperado": "Retorno sobre investimento estimado",
-    "lifetime_value": "Valor vitalício do cliente",
-    "custo_aquisicao": "Custo de aquisição estimado"
+    "projecoes_financeiras": {
+      "cenario_conservador": {
+        "vendas_mensais": "Número de vendas",
+        "receita_mensal": "Receita esperada",
+        "lucro_mensal": "Lucro esperado",
+        "roi": "ROI esperado"
+      },
+      "cenario_realista": {
+        "vendas_mensais": "Número de vendas",
+        "receita_mensal": "Receita esperada",
+        "lucro_mensal": "Lucro esperado",
+        "roi": "ROI esperado"
+      },
+      "cenario_otimista": {
+        "vendas_mensais": "Número de vendas",
+        "receita_mensal": "Receita esperada",
+        "lucro_mensal": "Lucro esperado",
+        "roi": "ROI esperado"
+      }
+    }
   },
   
-  "projecoes_cenarios": {
-    "conservador": {
-      "receita_mensal": "Receita mensal conservadora",
-      "clientes_mes": "Número de clientes/mês",
-      "ticket_medio": "Ticket médio",
-      "margem_lucro": "Margem de lucro %"
+  "sistema_anti_objecao": {
+    "objecoes_universais": {
+      "tempo": {
+        "objecao": "Não tenho tempo",
+        "raiz_emocional": "Medo de mais uma responsabilidade",
+        "contra_ataque": "Técnica específica de neutralização",
+        "drives_mentais": ["Drivers para usar"],
+        "historias": ["Histórias para contar"],
+        "provas": ["Provas para mostrar"]
+      },
+      "dinheiro": {
+        "objecao": "Não tenho dinheiro",
+        "raiz_emocional": "Medo de desperdício",
+        "contra_ataque": "Técnica específica de neutralização",
+        "drives_mentais": ["Drivers para usar"],
+        "historias": ["Histórias para contar"],
+        "provas": ["Provas para mostrar"]
+      },
+      "confianca": {
+        "objecao": "Não confio",
+        "raiz_emocional": "Medo de ser enganado",
+        "contra_ataque": "Técnica específica de neutralização",
+        "drives_mentais": ["Drivers para usar"],
+        "historias": ["Histórias para contar"],
+        "provas": ["Provas para mostrar"]
+      }
     },
-    "realista": {
-      "receita_mensal": "Receita mensal realista",
-      "clientes_mes": "Número de clientes/mês",
-      "ticket_medio": "Ticket médio",
-      "margem_lucro": "Margem de lucro %"
+    "objecoes_ocultas": {
+      "autossuficiencia": "Análise e neutralização",
+      "sinal_fraqueza": "Análise e neutralização",
+      "medo_novo": "Análise e neutralização",
+      "prioridades_desequilibradas": "Análise e neutralização",
+      "autoestima_destruida": "Análise e neutralização"
     },
-    "otimista": {
-      "receita_mensal": "Receita mensal otimista",
-      "clientes_mes": "Número de clientes/mês",
-      "ticket_medio": "Ticket médio",
-      "margem_lucro": "Margem de lucro %"
-    },
-    "fatores_sucesso": ["Fatores críticos para o sucesso"],
-    "riscos_principais": ["Principais riscos identificados"]
+    "arsenal_emergencia": ["Objeções de última hora e como lidar"]
   },
   
-  "inteligencia_mercado": {
+  "pre_pitch_invisivel": {
+    "orquestracao_emocional": {
+      "sequencia_psicologica": [
+        {"fase": "QUEBRA", "objetivo": "Destruir ilusão", "tempo": "15%"},
+        {"fase": "EXPOSICAO", "objetivo": "Revelar ferida", "tempo": "15%"},
+        {"fase": "INDIGNACAO", "objetivo": "Criar revolta", "tempo": "15%"},
+        {"fase": "VISLUMBRE", "objetivo": "Mostrar possível", "tempo": "15%"},
+        {"fase": "TENSAO", "objetivo": "Amplificar gap", "tempo": "15%"},
+        {"fase": "NECESSIDADE", "objetivo": "Tornar inevitável", "tempo": "25%"}
+      ],
+      "drivers_por_fase": "Mapeamento de drivers por fase",
+      "narrativas_conectoras": "Como conectar as fases"
+    },
+    "justificacao_logica": {
+      "numeros_irrefutaveis": ["Dados que não podem ser contestados"],
+      "calculos_roi": "Cálculos de retorno conservadores",
+      "demonstracoes": "Demonstrações passo a passo",
+      "cases_metricas": "Cases com métricas específicas",
+      "garantias": "Garantias que eliminam risco"
+    },
+    "roteiro_completo": "Script completo do pré-pitch",
+    "adaptacoes_formato": {
+      "webinario": "Adaptação para webinário",
+      "evento_presencial": "Adaptação para evento",
+      "cpl": "Adaptação para CPL",
+      "lives": "Adaptação para lives"
+    }
+  },
+  
+  "inteligencia_mercado_ultra": {
     "tendencias_setor": ["Principais tendências do setor"],
     "oportunidades_emergentes": ["Oportunidades emergentes"],
     "ameacas_externas": ["Ameaças do ambiente externo"],
     "sazonalidade": "Análise de sazonalidade",
     "ciclo_vida_produto": "Estágio no ciclo de vida",
-    "inovacoes_disruptivas": ["Inovações que podem impactar"]
+    "inovacoes_disruptivas": ["Inovações que podem impactar"],
+    "regulamentacoes": "Mudanças regulatórias relevantes",
+    "impacto_tecnologico": "Como a tecnologia afeta o setor",
+    "mudancas_comportamentais": "Mudanças no comportamento do consumidor"
   },
   
-  "plano_acao_detalhado": {
-    "fase_1_preparacao": {
+  "plano_acao_90_dias": {
+    "primeiros_30_dias": {
+      "foco": "Foco principal",
+      "atividades": ["Atividades específicas"],
+      "entregas": ["Entregas esperadas"],
+      "investimento": "Investimento necessário",
       "duracao": "Tempo estimado",
-      "atividades": ["Lista de atividades"],
-      "recursos_necessarios": ["Recursos necessários"],
-      "investimento": "Investimento estimado"
+      "marcos": ["Marcos importantes"]
     },
-    "fase_2_lancamento": {
+    "dias_31_60": {
+      "foco": "Foco principal",
+      "atividades": ["Atividades específicas"],
+      "entregas": ["Entregas esperadas"],
+      "investimento": "Investimento necessário",
       "duracao": "Tempo estimado",
-      "atividades": ["Lista de atividades"],
-      "recursos_necessarios": ["Recursos necessários"],
-      "investimento": "Investimento estimado"
+      "marcos": ["Marcos importantes"]
     },
-    "fase_3_crescimento": {
+    "dias_61_90": {
+      "foco": "Foco principal",
+      "atividades": ["Atividades específicas"],
+      "entregas": ["Entregas esperadas"],
+      "investimento": "Investimento necessário",
       "duracao": "Tempo estimado",
-      "atividades": ["Lista de atividades"],
-      "recursos_necessarios": ["Recursos necessários"],
-      "investimento": "Investimento estimado"
+      "marcos": ["Marcos importantes"]
     },
-    "cronograma_detalhado": "Cronograma mês a mês",
-    "marcos_importantes": ["Marcos e milestones"],
-    "indicadores_progresso": ["Como medir progresso"]
+    "cronograma_semanal": "Cronograma semana a semana",
+    "recursos_necessarios": ["Recursos humanos e financeiros"],
+    "riscos_mitigacao": ["Riscos e como mitigar"]
   },
   
-  "insights_exclusivos": [
-    "Lista de 8-12 insights únicos e valiosos baseados na análise"
-  ]
+  "insights_exclusivos_ultra": [
+    "Lista de 15-20 insights únicos e ultra-valiosos baseados na análise profunda"
+  ],
+  
+  "recomendacoes_estrategicas": [
+    "Recomendações estratégicas específicas e acionáveis"
+  ],
+  
+  "sistema_monitoramento": {
+    "dashboards": ["Dashboards necessários"],
+    "alertas": ["Alertas automáticos"],
+    "relatorios": ["Relatórios periódicos"],
+    "ajustes_otimizacao": ["Como otimizar baseado nos dados"]
+  }
 }
 ```
 
-## DIRETRIZES IMPORTANTES:
+## DIRETRIZES ULTRA-IMPORTANTES:
 
-1. **Seja ULTRA-ESPECÍFICO**: Use dados concretos, números, percentuais
-2. **Base-se em DADOS REAIS**: Use o contexto de pesquisa fornecido
-3. **Seja PRÁTICO**: Forneça ações executáveis
-4. **Seja INOVADOR**: Identifique oportunidades não óbvias
-5. **Mantenha COERÊNCIA**: Todos os dados devem ser consistentes
-6. **Use LINGUAGEM PROFISSIONAL**: Tom consultivo e especializado
+1. **PROFUNDIDADE EXTREMA**: Cada seção deve ter profundidade de especialista
+2. **ULTRA-ESPECÍFICO**: Use dados concretos, números, percentuais, exemplos reais
+3. **IMPLEMENTAÇÃO DOS SISTEMAS**: Implemente TODOS os sistemas dos documentos
+4. **ACIONABILIDADE TOTAL**: Cada insight deve ser imediatamente implementável
+5. **INOVAÇÃO CONSTANTE**: Identifique oportunidades que ninguém mais viu
+6. **COERÊNCIA ABSOLUTA**: Todos os dados devem ser perfeitamente consistentes
+7. **LINGUAGEM DE ELITE**: Tom de consultor de R$ 50.000/hora
+8. **INSIGHTS ÚNICOS**: Gere insights que só uma análise desta profundidade pode revelar
+9. **SISTEMAS INTEGRADOS**: Todos os sistemas devem trabalhar em sinergia
+10. **RESULTADOS GARANTIDOS**: Cada recomendação deve ter alta probabilidade de sucesso
 
-Gere APENAS o JSON válido, sem texto adicional antes ou depois.
+CRÍTICO: Esta análise será usada para decisões de investimento de milhões de reais. A qualidade deve ser IMPECÁVEL.
+
+Gere APENAS o JSON válido e ultra-completo, sem texto adicional antes ou depois.
 """
         
         return prompt
@@ -331,7 +502,7 @@ Gere APENAS o JSON válido, sem texto adicional antes ou depois.
             analysis = json.loads(response_text)
             
             # Adiciona metadados
-            analysis['metadata'] = {
+            analysis['metadata_gemini'] = {
                 'generated_at': datetime.now().isoformat(),
                 'model': 'gemini-pro',
                 'version': '2.0.0'
@@ -346,7 +517,7 @@ Gere APENAS o JSON válido, sem texto adicional antes ou depois.
     
     def _generate_fallback_analysis(self, data: Dict[str, Any]) -> Dict[str, Any]:
         """Gera análise básica em caso de erro"""
-        return {
+        fallback = {
             "avatar_ultra_detalhado": {
                 "perfil_demografico": {
                     "idade": "25-45 anos",
@@ -355,7 +526,8 @@ Gere APENAS o JSON válido, sem texto adicional antes ou depois.
                     "escolaridade": "Superior",
                     "localizacao": "Centros urbanos",
                     "estado_civil": "Variado",
-                    "filhos": "Variado"
+                    "filhos": "Variado",
+                    "profissao": "Profissionais diversos"
                 },
                 "perfil_psicografico": {
                     "personalidade": "Ambiciosos e determinados",
@@ -366,14 +538,14 @@ Gere APENAS o JSON válido, sem texto adicional antes ou depois.
                     "influenciadores": "Especialistas e peers"
                 },
                 "dores_especificas": [
-                    "Falta de tempo para aprender",
+                    "Falta de conhecimento especializado",
                     "Dificuldade para implementar",
                     "Resultados inconsistentes",
                     "Falta de direcionamento claro"
                 ],
                 "desejos_profundos": [
                     "Alcançar liberdade financeira",
-                    "Ter mais tempo livre",
+                    "Ter mais tempo para família",
                     "Ser reconhecido como especialista",
                     "Fazer diferença no mundo"
                 ],
@@ -381,7 +553,8 @@ Gere APENAS o JSON válido, sem texto adicional antes ou depois.
                     "Urgência",
                     "Escassez",
                     "Prova social",
-                    "Autoridade"
+                    "Autoridade",
+                    "Reciprocidade"
                 ],
                 "objecoes_comuns": [
                     "Preço muito alto",
@@ -390,7 +563,7 @@ Gere APENAS o JSON válido, sem texto adicional antes ou depois.
                     "Já tentei antes"
                 ],
                 "jornada_cliente": {
-                    "consciencia": "Percebe que precisa de ajuda",
+                    "consciencia": "Reconhece que tem um problema",
                     "consideracao": "Pesquisa soluções disponíveis",
                     "decisao": "Avalia custo-benefício",
                     "pos_compra": "Busca implementar e obter resultados"
@@ -398,29 +571,33 @@ Gere APENAS o JSON válido, sem texto adicional antes ou depois.
             },
             "escopo": {
                 "posicionamento_mercado": "Solução premium para resultados rápidos",
-                "proposta_valor": "Transforme seu negócio com estratégias comprovadas",
+                "proposta_valor_unica": "Transforme seu negócio com estratégias comprovadas",
                 "diferenciais_competitivos": ["Metodologia exclusiva", "Suporte personalizado"],
+                "mensagem_central": "Resultados garantidos com método comprovado",
                 "segmentacao_mercado": "Empreendedores digitais",
                 "nicho_especifico": data.get('segmento', 'Produtos Digitais')
             },
-            "insights_exclusivos": [
+            "insights_exclusivos_ultra": [
                 "O mercado está em crescimento acelerado",
                 "Existe demanda reprimida no segmento",
                 "Oportunidade de posicionamento premium",
-                "Potencial de expansão internacional"
+                "Potencial de expansão internacional",
+                "Análise gerada em modo fallback - execute nova análise para resultados completos"
             ],
-            "metadata": {
+            "metadata_gemini": {
                 "generated_at": datetime.now().isoformat(),
                 "model": "fallback",
                 "version": "2.0.0",
                 "note": "Análise gerada em modo fallback devido a erro na IA"
             }
         }
+        
+        return fallback
 
 
 # Instância global do cliente
 try:
-    gemini_client = GeminiClient()
+    gemini_client = UltraRobustGeminiClient()
     logger.info("Cliente Gemini inicializado com sucesso")
 except Exception as e:
     logger.error(f"Erro ao inicializar cliente Gemini: {str(e)}")
